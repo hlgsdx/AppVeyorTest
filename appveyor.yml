@@ -7,7 +7,7 @@ install:
         Invoke-WebRequest ${env:url_boost_7z_file} -OutFile ${env:APPVEYOR_BUILD_FOLDER}/boost.7z
 
     - cmd: >-
-        7z x %APPVEYOR_BUILD_FOLDER%/boost.7z -y -o"%APPVEYOR_BUILD_FOLDER%/ext/" >NUL
+        7z x %APPVEYOR_BUILD_FOLDER%\boost.7z boost_1_68_0\boost -y -o"%APPVEYOR_BUILD_FOLDER%\ext\" >NUL
 
         move "%APPVEYOR_BUILD_FOLDER%\ext\boost_1_68_0\boost" "%APPVEYOR_BUILD_FOLDER%\ext\include\boost"
 
