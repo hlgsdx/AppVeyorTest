@@ -1,15 +1,21 @@
 image: Visual Studio 2017
 environment:
     url_boost_7z_file: https://dl.bintray.com/boostorg/release/1.68.0/source/boost_1_68_0.7z
-    # boost_destination: c:\application\data\boost.7z
+    url_sdl_zip_file: https://www.libsdl.org/release/SDL-devel-1.2.15-VC.zip
 install:
     - ps: >-
         Invoke-WebRequest ${env:url_boost_7z_file} -OutFile ${env:APPVEYOR_BUILD_FOLDER}/boost.7z
+
+        Invoke-WebRequest ${env:url_sdl_zip_file} -OutFile ${env:APPVEYOR_BUILD_FOLDER}/sdl.zip
 
     - cmd: >-
         7z x %APPVEYOR_BUILD_FOLDER%\boost.7z boost_1_68_0\boost -y -o"%APPVEYOR_BUILD_FOLDER%\ext\" >NUL
 
         move "%APPVEYOR_BUILD_FOLDER%\ext\boost_1_68_0\boost" "%APPVEYOR_BUILD_FOLDER%\ext\include\boost"
+
+        7z x %APPVEYOR_BUILD_FOLDER%\sdl.zip SDL-1.2.15\include -y -o"%APPVEYOR_BUILD_FOLDER%\ext\" >NUL
+
+        move "%APPVEYOR_BUILD_FOLDER%\ext\SDL-1.2.15\include" "%APPVEYOR_BUILD_FOLDER%\ext\include\SDL"
 
 # artifacts:
   # - path: 
