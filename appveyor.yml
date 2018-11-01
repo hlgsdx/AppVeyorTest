@@ -5,9 +5,12 @@ environment:
 install:
     - ps: >-
         Invoke-WebRequest ${env:url_boost_7z_file} -OutFile ${env:APPVEYOR_BUILD_FOLDER}/boost.7z
+
     - cmd: >-
         7z x %APPVEYOR_BUILD_FOLDER%/boost.7z -y -o"%APPVEYOR_BUILD_FOLDER%/ext/include/" >NUL
+
         ren "%APPVEYOR_BUILD_FOLDER%/ext/include/boost_1_68_0" boost
+
 # artifacts:
   # - path: 
 # deploy:
