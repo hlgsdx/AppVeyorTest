@@ -4,7 +4,7 @@ environment:
     boost_destination: c:\application\data\boost.7z
 install:
     - ps: >-
-        Invoke-WebRequest $url_boost_7z_file -OutFile $boost_destination
+        Invoke-WebRequest ${env:url_boost_7z_file} -OutFile ${env:boost_destination}
     - cmd: >-
         7z x %boost_destination% -y -o"%APPVEYOR_BUILD_FOLDER%/ext/include/" >NUL
         ren "%APPVEYOR_BUILD_FOLDER%/ext/include/boost_1_68_0" boost
