@@ -1,12 +1,12 @@
 image: Visual Studio 2017
 environment:
     url_boost_7z_file: https://dl.bintray.com/boostorg/release/1.68.0/source/boost_1_68_0.7z
-    boost_destination: c:\application\data\boost.7z
+    # boost_destination: c:\application\data\boost.7z
 install:
     - ps: >-
-        Invoke-WebRequest ${env:url_boost_7z_file} -OutFile ${env:boost_destination}
+        Invoke-WebRequest ${env:url_boost_7z_file} -OutFile ${env:APPVEYOR_BUILD_FOLDER}/boost.7z
     - cmd: >-
-        7z x %boost_destination% -y -o"%APPVEYOR_BUILD_FOLDER%/ext/include/" >NUL
+        7z x %APPVEYOR_BUILD_FOLDER%/boost.7z -y -o"%APPVEYOR_BUILD_FOLDER%/ext/include/" >NUL
         ren "%APPVEYOR_BUILD_FOLDER%/ext/include/boost_1_68_0" boost
 # artifacts:
   # - path: 
